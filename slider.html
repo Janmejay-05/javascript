@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=\, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .div1 {
+        height: 200px;
+        width: 200px;
+      }
+      .image1 {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        background-blend-mode: ligh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="div1" id="div1">
+      <img src="" alt="" id="image" class="image1" />
+    </div>
+
+    <button id="next">next</button>
+    <button id="back">back</button>
+
+    <script>
+      let arr = [
+        "https://upload.wikimedia.org/wikipedia/en/3/3c/Chris_Hemsworth_as_Thor.jpg",
+        "https://cdn.britannica.com/49/182849-050-4C7FE34F/scene-Iron-Man.jpg",
+        "https://cdn.britannica.com/30/182830-050-96F2ED76/Chris-Evans-title-character-Joe-Johnston-Captain.jpg",
+      ];
+
+      let image = document.getElementById("image");
+      let next = document.getElementById("next");
+      let back = document.getElementById("back");
+      const div1 = document.getElementById("div1");
+
+      let count = 0;
+
+      next.addEventListener("click", () => {
+        if (count == arr.length - 1) {
+          count = 0;
+        } else {
+          count++;
+        }
+        effect();
+        showdata();
+      });
+
+      back.addEventListener("click", () => {
+        if (count == 0) {
+          count = arr.length - 1;
+        } else {
+          count--;
+        }
+        effect();
+        showdata();
+      });
+
+      function showdata() {
+        image.src = arr[count];
+      }
+      showdata();
+
+      function effect() {
+        if (count === 0) {
+          div1.style.border = "4px solid blue";
+          div1.style.transition = "0.5s";
+        } else if (count === 1) {
+          div1.style.border = "8px solid red";
+          div1.style.transition = "0.5s";
+        } else {
+          div1.style.border = "12px solid green";
+          div1.style.transition = "0.5s";
+        }
+      }
+    </script>
+  </body>
+</html>
