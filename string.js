@@ -50,6 +50,6 @@
 // console.log(result());
 
 // 23
-// let str = "JavaScript is fun";
-// const result = () => str.split(" ");
-// console.log(result());
+let str = "JavaScript is fun";
+const result = () => str.split(" ");
+console.log(result());

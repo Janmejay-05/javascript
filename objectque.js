@@ -1,3 +1,15 @@
+// for (let i = 1; i <= 5; i++) {
+//   let sp = "";
+//   for (let p = 1; p <= 5 - i; p++) {
+//     sp += " ";
+//   }
+
+//   for (let j = 1; j <= i; j++) {
+//     sp += "*";
+//   }
+//   console.log(sp);
+// }
+
 // let arr = [
 //   "google",
 //   "microsoft",
@@ -69,20 +81,34 @@
 
 // 4
 
-const arr = ["red", "blue", "red", "green", "blue", "blue"];
+// const arr = ["red", "blue", "red", "green", "blue", "blue"];
 
-const obj = {
-  obj2: {},
-  result: function () {
-    for (let i of arr) {
-      if (obj[i] == undefined) {
-        obj[i] = 1;
-      } else {
-        obj[i]++;
-      }
-    }
-  },
-};
+// const obj = {
+//   result: function () {
+//     let obj2 = {};
+//     for (let i of arr) {
+//       if (obj2[i] == undefined) {
+//         obj2[i] = 1;
+//       } else {
+//         obj2[i]++;
+//       }
+//     }
+//     let max = -Infinity;
+//     let maxvalue = "";
+//     for (let i in obj2) {
+//       if (obj2[i] > max) {
+//         max = obj2[i];
+//         maxvalue = i;
+//       }
+//     }
+
+//     console.log(
+//       ` the most frequently used color is ${maxvalue} which is ${max}`
+//     );
+//   },
+// };
+// console.log(obj);
+// obj.result();
 
 // const obj = {};
 
@@ -107,3 +133,55 @@ const obj = {
 // }
 
 // console.log(maxValue);
+
+// for (let i = 1; i <= 4; i++) {
+//   let str = "";
+//   for (let j = 1; j <= 4; j++) {
+//     if (i === 1 || i === 4 || j === 4 || j === 1) {
+//       str += "*";
+//     } else {
+//       str += " ";
+//     }
+//   }
+//   console.log(str);
+// }
+
+// for (let i = 1; i <= 5; i++) {
+//   let str = "";
+//   for (let j = 1; j <= 5; j++) {
+//     if (i === j || i + j === 6) {
+//       str += "*";
+//     } else {
+//       str += " ";
+//     }
+//   }
+//   console.log(str);
+// }
+
+// let str = "12345";
+// for (let i = 0; i < 5; i++) {
+//   let str1 = "";
+//   for (let j = i; j < 5; j++) {
+//     str1 += str[j];
+//   }
+//   console.log(str1);
+// }
+
+for (let i = 1; i <= 5; i++) {
+  let str = "";
+  for (let j = 1; j <= 5; j++) {
+    if (
+      i - j == 2 ||
+      i - j == -2 ||
+      i + j === 8 ||
+      i + j === 4 ||
+      i === 3 ||
+      j === 3
+    ) {
+      str += "*";
+    } else {
+      str += " ";
+    }
+  }
+  console.log(str);
+}

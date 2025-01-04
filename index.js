@@ -15,7 +15,7 @@
 //   console.log(str);
 // }
 
-for (let i = 5; i >= 1; i--) {
+for (let i = 5; i <= ; i--) {
   let str = "";
   for (let j = i; j >= 1; j--) {
     str += "*";
