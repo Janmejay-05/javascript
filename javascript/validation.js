@@ -75,13 +75,14 @@ function hobbievalidation() {
     if (!valid) {
       if (hobbie[i].checked) {
         valid = true;
-        errhobbie.innerText = "";
       }
     }
 
     if (!valid) {
       errhobbie.style.color = "red";
       errhobbie.innerText = "please select any hobbie";
+    } else {
+      errhobbie.innerText = "";
     }
   }
 }
