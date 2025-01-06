@@ -32,14 +32,32 @@ let op3 = document.getElementById("option3");
 let para = document.querySelectorAll("#para");
 let submit_btn = document.getElementById("submit_btn");
 let optval = document.querySelectorAll(".opt");
+let submit = document.getElementById("submit");
+let result_p = document.getElementById("result_p");
+let result_show = document.getElementById("show_result");
+let main = document.getElementById("main_cointainer");
+let reset_btn = document.getElementById("reset_btn");
 let count = 0;
 let ans_count = 0;
 
 function result() {
   ques.innerHTML = ` ${question[count].que}`;
+  ques.style.height = "40%";
+  ques.style.color = "white";
+  ques.style.fontSize = "40px";
+  op1.style.display = "none";
+  op2.style.display = "none";
+  op3.style.display = "none";
+  submit_btn.style.display = "none";
+  result_show.style.display = "block";
+  result_p.innerHTML = `Congrats your Score = ${ans_count}`;
+  main.style.backgroundColor = "black";
+  main.style.transition = "0.5s";
+  reset_btn.style.display = "block";
 }
 function data() {
   ques.innerHTML = ` ${question[count].que}`;
+
   para[0].innerText = ` ${question[count].a}`;
   para[1].innerText = ` ${question[count].b}`;
   para[2].innerText = ` ${question[count].c}`;
@@ -62,6 +80,7 @@ function optvalidation() {
         }
         console.log("checked");
         count++;
+        optval[i].checked = false;
       }
     }
     console.log(count);
@@ -75,7 +94,28 @@ function optvalidation() {
 submit_btn.addEventListener("click", () => {
   if (count < question.length - 1) {
     optvalidation();
-    console.log(count);
-    data();
+    if (count === question.length - 1) {
+      result();
+    } else {
+      console.log(count);
+      data();
+    }
   }
+});
+
+reset_btn.addEventListener("click", () => {
+  count = 0;
+  ans_count = 0;
+  ques.style.height = "23%";
+  ques.style.color = "black";
+  ques.style.fontSize = "25px";
+  op1.style.display = "block";
+  op2.style.display = "block";
+  op3.style.display = "block";
+  submit_btn.style.display = "block";
+  result_show.style.display = "none";
+  main.style.backgroundColor = "rgba(0, 0, 0, 0.162)";
+  main.style.transition = "0.5s";
+  reset_btn.style.display = "none";
+  data();
 });
