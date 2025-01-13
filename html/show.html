@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+      }
+
+      nav {
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        padding: 15px 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav .heading {
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      #cointainer {
+        margin-top: 20px;
+        padding: 15px;
+        background: #eef1f7;
+        border-radius: 8px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: 30px;
+        row-gap: 30px;
+      }
+
+      #card {
+        border-radius: 10px;
+        height: 400px;
+        border: 1px solid rgba(0, 0, 0, 0.111);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      #image_cointainer {
+        width: 100%;
+        height: 60%;
+        border-radius: 10px;
+      }
+      #image {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+
+      #para1 {
+        width: auto;
+        height: auto;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      #para2 {
+        width: auto;
+        height: auto;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      #q_cointainer {
+        width: 35%;
+        display: flex;
+        justify-content: space-between;
+      }
+      #delete {
+        padding: 10px 10px;
+        width: 30%;
+        border: none;
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: #fff;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 123, 255, 0.3);
+        transition: background 0.3s ease, box-shadow 0.3s ease,
+          transform 0.2s ease;
+      }
+      #delete:hover,
+      #add:hover,
+      #sub:hover,
+      #checkout:hover {
+        background: linear-gradient(135deg, #0056b3, #003e7e);
+        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+        transform: translateY(-2px);
+      }
+
+      #add {
+        width: 30px;
+        border: none;
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: #fff;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 123, 255, 0.3);
+        transition: background 0.3s ease, box-shadow 0.3s ease,
+          transform 0.2s ease;
+      }
+      #sub {
+        width: 30px;
+        border: none;
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: #fff;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(0, 123, 255, 0.3);
+        transition: background 0.3s ease, box-shadow 0.3s ease,
+          transform 0.2s ease;
+      }
+      #total {
+        height: 50px;
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #total_p {
+        width: 20%;
+        height: 45px;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+        background-color: white;
+        border-radius: 10px;
+
+        text-align: center;
+        align-content: center;
+      }
+
+      #total_p:hover {
+        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+        transform: translateY(-1px);
+        transition: 0.5s;
+      }
+
+      #checkout {
+        padding: 10px 10px;
+
+        width: 10%;
+        border: none;
+        background: linear-gradient(135deg, white, white);
+        color: black;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 5px 10px rgba(255, 255, 255, 0.3);
+        transition: background 0.3s ease, box-shadow 0.3s ease,
+          transform 0.2s ease;
+      }
+
+      #checkout:hover {
+        background: linear-gradient(135deg, black, black);
+        box-shadow: 0 8px 20px rgba(1, 6, 12, 0.4);
+        transform: translateY(-2px);
+        transition: 0.5s;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="heading">Your Cart Items</div>
+    </nav>
+    <div id="cointainer"></div>
+    <div id="total">
+      <p id="total_p">Empty Cart</p>
+      <button id="checkout">Checkout</button>
+    </div>
+    <script>
+      let cointainer = document.getElementById("cointainer");
+      let storeData = JSON.parse(localStorage.getItem("cartProducts"));
+      let total = document.getElementById("total_p");
+      let checkout = document.getElementById("checkout");
+      let totaldiv = document.getElementById("total");
+
+      function show() {
+        let price = 0;
+        cointainer.innerHTML = "";
+        storeData.forEach((element, index) => {
+          //declare
+          let card = document.createElement("div");
+          let image_cointainer = document.createElement("div");
+          let image = document.createElement("img");
+          let para1 = document.createElement("p");
+          let para2 = document.createElement("p");
+          let del = document.createElement("button");
+          let add = document.createElement("button");
+          let qutity = document.createElement("span");
+          let sub = document.createElement("button");
+          let q_cointainer = document.createElement("div");
+
+          //giving ids
+          card.id = "card";
+          image_cointainer.id = "image_cointainer";
+          image.id = "image";
+          para1.id = "para1";
+          para2.id = "para2";
+          del.id = "delete";
+          add.id = "add";
+          qutity.id = "qutity";
+          sub.id = "sub";
+          q_cointainer.id = "q_cointainer";
+
+          //add button listner
+          del.addEventListener("click", () => {
+            storeData = storeData.filter((el, i) => i != index);
+            localStorage.setItem("cartProducts", JSON.stringify(storeData));
+            show();
+          });
+
+          //implimenting
+          image.src = element.url;
+          para1.innerText = element.proName;
+          para2.innerText = `$ ${element.proPrice}`;
+          del.innerHTML = `Delete`;
+          add.innerText = " + ";
+          qutity.innerHTML = `  ${element.quantity}  `;
+          sub.innerText = " - ";
+
+          function total_price() {
+            price += element.proPrice * element.quantity;
+            total.innerText = `Total Price = ${price}`;
+          }
+
+          //add  ADD listner
+          add.addEventListener("click", () => {
+            element.quantity++;
+            localStorage.setItem("cartProducts", JSON.stringify(storeData));
+            show();
+          });
+
+          //add sub listner
+          sub.addEventListener("click", () => {
+            element.quantity--;
+            localStorage.setItem("cartProducts", JSON.stringify(storeData));
+            show();
+          });
+
+          //add checkout listner
+          checkout.addEventListener("click", () => {
+            localStorage.removeItem("cartProducts");
+            window.location.href = "../html/addtoproduct.html";
+          });
+
+          //append
+          image_cointainer.append(image);
+          q_cointainer.append(sub, qutity, add);
+          card.append(image_cointainer, para1, para2, del, q_cointainer);
+          cointainer.append(card);
+
+          total_price();
+        });
+      }
+
+      show();
+    </script>
+  </body>
+</html>
