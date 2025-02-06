@@ -4,6 +4,10 @@ let name = document.getElementById("name");
 let price = document.getElementById("price");
 let btn = document.getElementById("btn");
 let cointainer = document.getElementById("cointainer");
+let inc = document.getElementById("inc");
+let dec = document.getElementById("dec");
+let search = document.getElementById("searchbar");
+let searchbtn = document.getElementById("search_btn");
 
 //linking array to localStorge
 
@@ -138,4 +142,56 @@ btn.addEventListener("click", () => {
   }
 });
 
+console.log(mainproduct);
+//add inc listner
+inc.addEventListener("click", () => {
+  mainproduct = mainproduct.sort((a, b) => a.proPrice - b.proPrice);
+  show();
+});
+
+//add dec listner
+dec.addEventListener("click", () => {
+  mainproduct = mainproduct.sort((a, b) => b.proPrice - a.proPrice);
+  show();
+});
+
 show();
+
+//add search listener
+// searchbtn.addEventListener("click", () => {
+//   if (search.value === "") {
+//     alert("enter some value");
+//     return;
+//   } else {
+//     mainproduct = mainproduct.filter((element, index) => {
+//       // let getname = element.proName.toLowerCase();
+
+//       if (element.proName.toLowerCase().includes(search.value.toLowerCase())) {
+//         return element;
+//       }
+//     });
+//     show();
+//     search.value = "";
+//   }
+// });
+
+let a = [];
+a = mainproduct;
+
+function searchfun() {
+  mainproduct = a;
+  if (search.value === "") {
+    mainproduct = a;
+    show();
+  } else {
+    mainproduct = mainproduct.filter((element, index) => {
+      // let getname = element.proName.toLowerCase();
+
+      if (element.proName.toLowerCase().includes(search.value.toLowerCase())) {
+        console.log(element);
+        return element;
+      }
+    });
+    show();
+  }
+}
