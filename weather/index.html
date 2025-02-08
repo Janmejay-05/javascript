@@ -3,18 +3,138 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./weather.css" />
+    <title>Weather App</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        background: linear-gradient(to right, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .main_container {
+        width: 100%;
+        max-width: 600px;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .input-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      input {
+        padding: 12px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        border-color: #fff;
+      }
+
+      button {
+        padding: 12px 20px;
+        font-size: 16px;
+        background: #ff7eb3;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #ff4f8b;
+      }
+
+      #container {
+        border-radius: 12px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        color: white;
+        text-align: center;
+        min-height: 200px;
+        transition: 0.5s;
+      }
+
+      h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      #data-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        font-size: 18px;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <div class="main_cointainer">
+    <div class="main_container">
       <div class="input-container">
-        <input id="text" type="text" placeholder="Enter text" />
+        <input id="text" type="text" placeholder="Enter city name" />
         <button id="btn">Submit</button>
       </div>
-      <div id="cointainer"></div>
+      <div id="container"></div>
     </div>
 
-    <script src="./weather.js"></script>
+    <script>
+      let text = document.getElementById("text");
+      let btn = document.getElementById("btn");
+      let container = document.getElementById("container");
+      const apikey = "cc4d32f41a3f22e1d6d47d128ed76149";
+
+      async function weather() {
+        container.innerHTML = "";
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${text.value}&appid=${apikey}`
+        );
+        const data = await response.json();
+
+        let cityName = document.createElement("h1");
+        cityName.innerText = `${data.name}`;
+        container.append(cityName);
+
+        let dataContainer = document.createElement("div");
+        dataContainer.id = "data-container";
+
+        for (const key in data.main) {
+          let info = document.createElement("p");
+          info.innerText = `${key}: ${data.main[key]}°C`;
+          dataContainer.append(info);
+        }
+
+        container.append(dataContainer);
+      }
+
+      btn.addEventListener("click", () => {
+        if (text.value === "") {
+          alert("Please enter a city name");
+          return;
+        } else {
+          weather();
+        }
+        text.value = "";
+      });
+    </script>
   </body>
 </html>
